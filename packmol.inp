@@ -1,0 +1,15 @@
+tolerance 1
+seed -1
+movebadrandom
+randominitialpoint
+sidemax 100000000.d0
+precision 1e-08
+nloop0 100000
+discale 2.0
+filetype xyz
+output ./Packed_xyz.xyz
+
+structure ./Polymer_xyz.xyz
+number 10
+inside box 0 0 0 1000 1000 1000
+end structure

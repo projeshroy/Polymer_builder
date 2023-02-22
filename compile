@@ -1,0 +1,2 @@
+g++ -std=c++17 -I /usr/include/Eigen_3.3.1/ Polymer_builder.cpp -o Polymer_builder -lm -g3 -w
+g++ -std=c++17 -I /usr/include/Eigen_3.3.1/ packmol_mol2.cpp -o packmol_mol2 -lm -g3 -w
