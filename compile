@@ -1,3 +1,3 @@
-g++ -std=c++17 -I ./include/Eigen_3.3.1/ -I ./include/openbabel_3.1.1/build/bin/ -I ./include/vmd-1.9.3/build/bin/ -I ./include/packmol-20.14.0/ Polymer_builder.cpp -o Polymer_builder -lm -g3 -w
+g++ -std=c++17 -I ./include/Eigen_3.3.1/ -I ./include/openbabel_3.1.1/build/bin/ -I ./include/vmd-1.9.3/build/bin/ -I ./include/packmol-20.14.0/ -L./include/vmd-1.9.3/build/lib Polymer_builder.cpp -o Polymer_builder -lm -g3 -w
 
-g++ -std=c++17 -I ./include/Eigen_3.3.1/ -I ./include/openbabel_3.1.1/build/bin/ -I ./include/vmd-1.9.3/build/bin/ -I ./include/packmol-20.14.0/ packmol_mol2.cpp -o packmol_mol2 -lm -g3 -w
+g++ -std=c++17 -I ./include/Eigen_3.3.1/ -I ./include/openbabel_3.1.1/build/bin/ -I ./include/vmd-1.9.3/build/bin/ -I ./include/packmol-20.14.0/ -L./include/vmd-1.9.3/build/lib packmol_mol2.cpp -o packmol_mol2 -lm -g3 -w
