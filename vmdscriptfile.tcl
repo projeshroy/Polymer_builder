@@ -5,7 +5,7 @@ pbc set {1000  1000  1000}
 topo retypebonds
 topo guessangles
 topo guessdihedrals
-topo guessimpropers
+topo guessimpropers tolerance 10
 topo writelammpsdata ./data.lammps full
 topo readlammpsdata ./data.lammps molecular
 animate write psf lammps.psf
