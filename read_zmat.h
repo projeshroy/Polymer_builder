@@ -31,8 +31,8 @@ void read_zmat(std::ifstream& zmat_file, int& total_atoms, double& charge, doubl
 	dihedral_name.resize(total_atoms);
 	dihedral_value.resize(total_atoms);
 
-        zmat_file >> read_string; //Remove everything after # in the gzmat file. If you want to keep it, edit this line. 
-                                          //This is just so we can view it easily with avogadro. 
+	zmat_file.ignore(std::numeric_limits<std::streamsize>::max(), '\n');//Remove comments section
+
         zmat_file >> charge >> multiplicity;
             
         for(int i = 0; i < total_atoms; i++)

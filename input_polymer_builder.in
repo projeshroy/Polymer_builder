@@ -1,0 +1,17 @@
+zmat_file_address ./Monomer_zmat.gzmat 
+mol2_file_address ./Monomer_mol2.mol2
+Monomer_atom_count 42
+Total_fragments 3
+Polymer_length 30
+Cap1_atom_count 1
+Cap1_atom_indices 20
+Cap2_atom_count 1
+Cap2_atom_indices 39
+
+variable_replace yes
+variable_replace_count 2
+41 15 -1 
+X 1.1000  160.31    2.51  X  6  0.0000  CAL  3   
+42 15 -1 
+X 1.1000  160.53  359.43  X  6  0.0000  CAL  3   
+

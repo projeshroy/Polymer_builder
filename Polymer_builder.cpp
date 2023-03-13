@@ -25,7 +25,7 @@ int main(int argc, char** argv){
 //Read input.in file 
 //................................................................................................
 
-        int Capped_Monomer_atom_count, Total_atom_types, Total_fragments, Polymer_length, Cap1_atom_count, Cap2_atom_count;
+        int Capped_Monomer_atom_count, Total_fragments, Polymer_length, Cap1_atom_count, Cap2_atom_count;
         Vec_i Cap1_atom_indices, Cap2_atom_indices;
      
         std::string read_string, Monomer_zmat_file_address, Monomer_mol2_file_address;
@@ -36,12 +36,10 @@ int main(int argc, char** argv){
 	std::ifstream Monomer_mol2_file(Monomer_mol2_file_address.c_str());
 
         input_file >> read_string >> Capped_Monomer_atom_count;
-        input_file >> read_string >> Total_atom_types;
         input_file >> read_string >> Total_fragments;
         input_file >> read_string >> Polymer_length;
 
         std::cout << " Capped_Monomer_atom_count " << Capped_Monomer_atom_count << std::endl;
-        std::cout << " Total_atom_types " << Total_atom_types << std::endl;
         std::cout << " Total_fragments " << Total_fragments << std::endl;
         std::cout << " Polymer_length " << Polymer_length << std::endl;
            
@@ -84,6 +82,8 @@ int main(int argc, char** argv){
 
 	int Capped_Monomer_bond_count = Monomer_mol2_bond_types.rows();
 	int Polymer_bond_count = Capped_Monomer_bond_count * Polymer_length;
+
+	std::cout << " Capped_Monomer_bond_count " << Capped_Monomer_bond_count << std::endl;
        	std::cout << " Polymer_bond_count " << Polymer_bond_count << std::endl;
 
 //................................................................................................
@@ -228,22 +228,23 @@ int main(int argc, char** argv){
 
         if(read_string == std::string("yes")){
         input_file >> read_string >> variable_replace_count;
+
         for(int i = 0; i < variable_replace_count; i++){
-            	int atom_id, atom_type_index, fragment_type_index;
-            	int monomer_count = 1;
-            	Vec_i monomer_id; monomer_id.resize(monomer_count);
-            	int random_replace_count = 0;
-            	double bond, angle, dihedral, charge;
+            	int atom_id, atom_type_index, fragment_type_index, monomer_count;
+		double bond, angle, dihedral, charge;
             	std::string name, atom_type_name, fragment_name;
-     
-            	input_file >> atom_id >> monomer_id[0];
-     
-            	if(monomer_id[0] <= 0){//random replacement signal
-            	input_file >> monomer_count;
-            	monomer_id.resize(monomer_count);
+
+		input_file >> atom_id >> monomer_count;
+            	Vec_i monomer_id; monomer_id.resize(monomer_count);
             	monomer_id.setZero();
-            	}
-            	
+     
+            	input_file >> monomer_id[0];// monomer_id[0] <= 0; random replacement signal
+
+		if(monomer_id[0] > 0){
+		for(int j = 1; j < monomer_count; j++)
+			input_file >> monomer_id[j];
+		}
+
             	input_file >> name >> bond >> angle >> dihedral;
             	input_file >> atom_type_name >> atom_type_index >> charge >> fragment_name >> fragment_type_index;
      
@@ -252,7 +253,7 @@ int main(int argc, char** argv){
             		  << " atom_type_name " << atom_type_name << " atom_type_index " << atom_type_index << " charge " << charge 
             		  << " fragment_name " << fragment_name << " fragment_type_index " << fragment_type_index << std::endl;
      
-                    //Unique random monomer fragment selection.....................		
+                //Unique random monomer fragment selection.....................		
             	if(monomer_id[0] <= 0){
             	for(int j = 0; j < monomer_count; j++){
             		int rand = 0;
@@ -273,12 +274,16 @@ int main(int argc, char** argv){
             	std::cout << " Randomly selected monomer_id " << monomer_id[j] << std::endl;
             	}
             	}
-     
+		else {
+     		for(int j = 0; j < monomer_count; j++)
+			std::cout << " Given monomer_id " << monomer_id[j] << std::endl;
+		}
+
             	for(int j = 0; j < monomer_count; j++){
             	    Element_names_matrix(monomer_id[j]-1, atom_id-1) = name;
             	    Mid_Element_names_matrix(monomer_id[j]-1, atom_id-1) = name;	
             	    Ini_Element_names_matrix(monomer_id[j]-1, atom_id-1) = name;
-                        Fin_Element_names_matrix(monomer_id[j]-1, atom_id-1) = name;
+                    Fin_Element_names_matrix(monomer_id[j]-1, atom_id-1) = name;
      
             	    bond_connection_values_matrix(monomer_id[j]-1, atom_id-1) = bond;
             	    angle_connection_values_matrix(monomer_id[j]-1, atom_id-1) = angle;

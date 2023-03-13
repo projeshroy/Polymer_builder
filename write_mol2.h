@@ -14,11 +14,11 @@ void write_mol2(std::ofstream& mol2_file, Vec_s& element_names, Mat_d& coordinat
 
 	for(int i = 0 ; i < element_names.rows(); i++)
 		mol2_file << " " << std::setfill(' ') << std::setw(10) << (i+1) 
-			  << " " << std::setfill(' ') << std::setw(10) << element_names[i] 
+			  << " " << std::setfill(' ') << std::setw(4) << element_names[i] 
 			  << " " << std::setfill(' ') << std::setw(10) << coordinates(0, i) 
 			  << " " << std::setfill(' ') << std::setw(10) << coordinates(1, i) 
 			  << " " << std::setfill(' ') << std::setw(10) << coordinates(2, i) 
-			  << " " << std::setfill(' ') << std::setw(10) << atom_type_names[i] 
+			  << " " << std::setfill(' ') << std::setw(15) << atom_type_names[i] 
 			  << " " << std::setfill(' ') << std::setw(10) << molecule_type_indices[i] 
 			  << " " << std::setfill(' ') << std::setw(10) << molecule_names[i] 
 			  << " " << std::setfill(' ') << std::setw(10) << atom_charges[i] 

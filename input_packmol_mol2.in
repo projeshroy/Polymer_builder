@@ -1,0 +1,2 @@
+total_molecules 2
+mol2_address ./Polymer_mol2.mol2 10 ./water_TIP3P.mol2 1000	
