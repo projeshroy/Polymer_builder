@@ -1,17 +1,17 @@
 zmat_file_address ./Monomer_zmat.gzmat 
 mol2_file_address ./Monomer_mol2.mol2
-Monomer_atom_count 42
-Total_fragments 3
+Monomer_atom_count 43
+Total_fragments 2
 Polymer_length 30
 Cap1_atom_count 1
 Cap1_atom_indices 20
-Cap2_atom_count 1
-Cap2_atom_indices 39
+Cap2_atom_count 2
+Cap2_atom_indices 22 43
 
 variable_replace yes
-variable_replace_count 2
-41 15 -1 
-X 1.1000  160.31    2.51  X  6  0.0000  CAL  3   
-42 15 -1 
-X 1.1000  160.53  359.43  X  6  0.0000  CAL  3   
-
+variable_replace_count 5
+1  1 1  O 1.4252 108.80  69.30  opls_187_OS -0.7000 SUG1  1
+2  1 1  C 1.4252 111.40 148.60  opls_195_CT  0.3650 SUG1  1
+17 1 1  H 1.0959 106.98 241.51  opls_196_HC  0.1000 SUG1  1
+29 1 30 C 1.4277  51.63  44.05  opls_174_CT  0.2050 SUG2  2
+35 1 30 H 1.0987 111.62 137.25  opls_176_HC  0.0600 SUG2  2

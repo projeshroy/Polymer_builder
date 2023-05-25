@@ -242,11 +242,15 @@ int main(int argc, char** argv){
             	Vec_i monomer_id; monomer_id.resize(monomer_count);
             	monomer_id.setZero();
      
-            	input_file >> monomer_id[0];// monomer_id[0] <= 0; random replacement signal
-
+            	input_file >> monomer_id[0];// monomer_id[0] <  0; random replacement signal
+					    // monomer_id[0] == 0; replace in all monomers	
 		if(monomer_id[0] > 0){
 		for(int j = 1; j < monomer_count; j++)
 			input_file >> monomer_id[j];
+		}
+		else if (monomer_id[0] == 0){
+		 for(int j = 1; j < Polymer_length; j++)
+                        monomer_id[j] = j;
 		}
 
             	input_file >> name >> bond >> angle >> dihedral;
@@ -258,7 +262,7 @@ int main(int argc, char** argv){
             		  << " fragment_name " << fragment_name << " fragment_type_index " << fragment_type_index << std::endl;
      
                 //Unique random monomer fragment selection.....................		
-            	if(monomer_id[0] <= 0){
+            	if(monomer_id[0] < 0){
             	for(int j = 0; j < monomer_count; j++){
             		int rand = 0;
             		bool check = true;
