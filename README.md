@@ -3,7 +3,7 @@
 #A library for building the Initial configurations of polymer melts!
 #=============================================================================
 
-Requirements 	: 	Eigen_3.3.1, VMD, Packmol. All are included in the "include" directory. 
+Requirements 	: 	Eigen_3.3.1, VMD, and Packmol. All are included in the "include" directory. 
 Installations	: 	Edit the "compile" file is necessary and then type "./compile"
 
 #=============================================================================

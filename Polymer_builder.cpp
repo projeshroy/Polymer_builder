@@ -20,6 +20,10 @@ int main(int argc, char** argv){
         std::string Polymer_zmat_file_address = getFileAddress(directory, std::string("Polymer_zmat.gzmat"));
         std::ofstream Polymer_zmat_file;
         Polymer_zmat_file.open(Polymer_zmat_file_address); 
+
+        std::string Polymer_charge_file_address = getFileAddress(directory, std::string("Polymer_charge.dat"));
+        std::ofstream Polymer_charge_file;
+        Polymer_charge_file.open(Polymer_charge_file_address); 
 	
 //................................................................................................
 //Read input.in file 
@@ -230,7 +234,7 @@ int main(int argc, char** argv){
         input_file >> read_string >> variable_replace_count;
 
         for(int i = 0; i < variable_replace_count; i++){
-            	int atom_id, atom_type_index, fragment_type_index, monomer_count;
+            	int atom_id, fragment_type_index, monomer_count;
 		double bond, angle, dihedral, charge;
             	std::string name, atom_type_name, fragment_name;
 
@@ -246,11 +250,11 @@ int main(int argc, char** argv){
 		}
 
             	input_file >> name >> bond >> angle >> dihedral;
-            	input_file >> atom_type_name >> atom_type_index >> charge >> fragment_name >> fragment_type_index;
+            	input_file >> atom_type_name >> charge >> fragment_name >> fragment_type_index;
      
             	std::cout << " atom_id " << atom_id << " monomer_count " << monomer_count 
             		  << " name " << name << " bond " << bond << " angle " << " dihedral " << dihedral
-            		  << " atom_type_name " << atom_type_name << " atom_type_index " << atom_type_index << " charge " << charge 
+            		  << " atom_type_name " << atom_type_name << " charge " << charge 
             		  << " fragment_name " << fragment_name << " fragment_type_index " << fragment_type_index << std::endl;
      
                 //Unique random monomer fragment selection.....................		
@@ -453,4 +457,14 @@ int main(int argc, char** argv){
 	write_mol2(Polymer_mol2_file, new_Polymer_Element_names, new_Polymer_coordinates, 
 	       	   new_Polymer_atom_type_names, new_Polymer_fragment_type_indices, new_Polymer_fragment_names, 
 		   new_Polymer_atom_charges, new_Polymer_mol2_bonds, new_Polymer_mol2_bond_types);
+
+//................................................................................................
+//Write charge file
+//................................................................................................
+	
+	for(int i = 0; i < new_Polymer_atom_charges.size(); i++)
+		Polymer_charge_file << new_Polymer_atom_charges[i] << std::endl;
+
+	std::cout << "Total charge on the polymer = " << new_Polymer_atom_charges.sum() << std::endl;
+
 }
