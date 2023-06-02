@@ -235,7 +235,8 @@ int main(int argc, char** argv){
 
 	for(int i = 0; i < variable_replace_group_count; i++){
 		int variable_replace_count, monomer_count;
-		input_file >> variable_replace_count >> monomer_count;
+		input_file >> read_string >> variable_replace_count >> monomer_count;
+		std::cout << " Variable replace group name " << read_string << " id " << (i+1) << " monomer_count " << monomer_count << std::endl;
             	Vec_i monomer_id; monomer_id.resize(monomer_count);
             	monomer_id.setZero();
      
@@ -245,13 +246,13 @@ int main(int argc, char** argv){
 		if(monomer_id[0] > 0){
 		for(int j = 1; j < monomer_count; j++){
 			input_file >> monomer_id[j];
-			std::cout << " Variable replace group " << (i+1) << "  Given monomer_id " << monomer_id[j] << std::endl;
+			std::cout << "  Given monomer_id " << monomer_id[j] << std::endl;
 			}
 		}
 		else if (monomer_id[0] == 0){
 		 for(int j = 0; j < monomer_count; j++){
                         monomer_id[j] = j+1;
-			std::cout << " Variable replace group " << (i+1) << " Serial monomer_id " << monomer_id[j] << std::endl;
+			std::cout << " Serial monomer_id " << monomer_id[j] << std::endl;
 			}
 		}
             	else if(monomer_id[0] < 0){
@@ -271,7 +272,7 @@ int main(int argc, char** argv){
             		if(!check)
             		monomer_id[j] = rand;
             	     }
-            	std::cout << " Variable replace group " << (i+1) << " Randomly selected monomer_id " << monomer_id[j] << std::endl;
+            	std::cout << " Randomly selected monomer_id " << monomer_id[j] << std::endl;
             	}
             	}
 		//..........................................................
@@ -283,7 +284,7 @@ int main(int argc, char** argv){
 			input_file >> atom_id >> name >> bond >> angle >> dihedral;
 	            	input_file >> atom_type_name >> charge >> fragment_name >> fragment_type_index;
 		
-	            	std::cout << " variable replace group " << (i+1) << " atom_id " << atom_id << " monomer_count " << monomer_count 
+	            	std::cout << " atom_id " << atom_id << " monomer_count " << monomer_count 
             		  << " name " << name << " bond " << bond << " angle " << " dihedral " << dihedral
             		  << " atom_type_name " << atom_type_name << " charge " << charge 
             		  << " fragment_name " << fragment_name << " fragment_type_index " << fragment_type_index << std::endl;
