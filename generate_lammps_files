@@ -1,2 +1,2 @@
-  vmd -dispdev text ./Packed_pdb.pdb < vmdscriptfile.tcl
+  vmd -dispdev text ./Packed_mol2.mol2 < vmdscriptfile.tcl
 

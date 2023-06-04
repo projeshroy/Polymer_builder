@@ -5,6 +5,7 @@
 #include "read_zmat.h"
 #include "write_zmat.h"
 #include "read_xyz.h"
+#include "variable_replace.h"
 
 int main(int argc, char** argv){
 
@@ -226,91 +227,27 @@ int main(int argc, char** argv){
 //Read variable replace section in input.in file
 //................................................................................................
 
-        int variable_replace_group_count;
-
         input_file >> read_string >> read_string;
 
         if(read_string == std::string("yes")){
-        input_file >> read_string >> variable_replace_group_count;
-
-	for(int i = 0; i < variable_replace_group_count; i++){
-		int variable_replace_count, monomer_count;
-		input_file >> read_string >> variable_replace_count >> monomer_count;
-		std::cout << " Variable replace group name " << read_string << " id " << (i+1) << " monomer_count " << monomer_count << std::endl;
-            	Vec_i monomer_id; monomer_id.resize(monomer_count);
-            	monomer_id.setZero();
-     
-		//Selecting Monomer id for the replacement group.........
-            	input_file >> monomer_id[0];// monomer_id[0] <  0; random replacement signal
-					    // monomer_id[0] == 0; replace in all monomers between 0 to monomer_count	
-		if(monomer_id[0] > 0){
-		for(int j = 1; j < monomer_count; j++){
-			input_file >> monomer_id[j];
-			std::cout << "  Given monomer_id " << monomer_id[j] << std::endl;
-			}
-		}
-		else if (monomer_id[0] == 0){
-		 for(int j = 0; j < monomer_count; j++){
-                        monomer_id[j] = j+1;
-			std::cout << " Serial monomer_id " << monomer_id[j] << std::endl;
-			}
-		}
-            	else if(monomer_id[0] < 0){
-            	for(int j = 0; j < monomer_count; j++){
-            		int rand = 0;
-            		bool check = true;
-     
-            		while(check){
-            		rand = std::floor(getRand(1, Polymer_length));
-            		for(int k = 0; k < monomer_count; k++){
-            		    if(rand == monomer_id[k]){
-            		    check = true;
-            		    break;
-            		    }
-            		    else check = false;
-            		}
-            		if(!check)
-            		monomer_id[j] = rand;
-            	     }
-            	std::cout << " Randomly selected monomer_id " << monomer_id[j] << std::endl;
-            	}
-            	}
-		//..........................................................
-		for(int j = 0; j < variable_replace_count; j++){
-            		int atom_id, fragment_type_index;
-			double bond, angle, dihedral, charge;
-            		std::string name, atom_type_name, fragment_name;
-
-			input_file >> atom_id >> name >> bond >> angle >> dihedral;
-	            	input_file >> atom_type_name >> charge >> fragment_name >> fragment_type_index;
-		
-	            	std::cout << " atom_id " << atom_id << " monomer_count " << monomer_count 
-            		  << " name " << name << " bond " << bond << " angle " << " dihedral " << dihedral
-            		  << " atom_type_name " << atom_type_name << " charge " << charge 
-            		  << " fragment_name " << fragment_name << " fragment_type_index " << fragment_type_index << std::endl;
-		
-            		for(int k = 0; k < monomer_count; k++){
-            	    		Element_names_matrix(monomer_id[k]-1, atom_id-1) = name;
-            	    		Mid_Element_names_matrix(monomer_id[k]-1, atom_id-1) = name;	
-            	    		Ini_Element_names_matrix(monomer_id[k]-1, atom_id-1) = name;
-                    		Fin_Element_names_matrix(monomer_id[k]-1, atom_id-1) = name;
-     
-            	    		bond_connection_values_matrix(monomer_id[k]-1, atom_id-1) = bond;
-            	    		angle_connection_values_matrix(monomer_id[k]-1, atom_id-1) = angle;
-            	    		dihedral_connection_values_matrix(monomer_id[k]-1, atom_id-1) = dihedral;
-            	
-            	    		Monomer_atom_type_names_matrix(monomer_id[k]-1, atom_id-1) = atom_type_name;
-            	    		Mid_Monomer_atom_type_names_matrix(monomer_id[k]-1, atom_id-1) = atom_type_name;
-            	    		Ini_Monomer_atom_type_names_matrix(monomer_id[k]-1, atom_id-1) = atom_type_name;
-            	    		Fin_Monomer_atom_type_names_matrix(monomer_id[k]-1, atom_id-1) = atom_type_name;
-     
-            	    		Monomer_fragment_names_matrix(monomer_id[k]-1, atom_id-1) = fragment_name;
-            	    		Monomer_atom_charges_matrix(monomer_id[k]-1, atom_id-1) = charge;
-            	    		Monomer_fragment_type_indices_matrix(monomer_id[k]-1, atom_id-1) = fragment_type_index;	
-            		}		
-        	}		
+	variable_replace(input_file,
+		Polymer_length,
+		Element_names_matrix, 
+		Mid_Element_names_matrix, 
+		Ini_Element_names_matrix, 
+		Fin_Element_names_matrix, 
+		bond_connection_values_matrix, 
+		angle_connection_values_matrix, 
+		dihedral_connection_values_matrix,
+            	Monomer_atom_type_names_matrix,		
+            	Mid_Monomer_atom_type_names_matrix,	
+            	Ini_Monomer_atom_type_names_matrix,	
+            	Fin_Monomer_atom_type_names_matrix,	
+            	Monomer_fragment_names_matrix,		
+            	Monomer_atom_charges_matrix,		
+            	Monomer_fragment_type_indices_matrix);	
 	}
-	}
+
 //................................................................................................
 //Build Polymer
 //................................................................................................
