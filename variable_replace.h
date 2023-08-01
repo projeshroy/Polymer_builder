@@ -64,7 +64,6 @@ void variable_replace(std::ifstream& input_file,
 
                 for(int g = 0; g < i; g++){
                         if(read_string == group_name[g]){
-std::cout << " group name " << read_string << std::endl;
                         monomer_id.row(i) = complementary_monomer_id.row(g);
 			break;
 			}
