@@ -107,20 +107,20 @@ void variable_replace(std::ifstream& input_file,
 			}
 		}
 
-            	for(int j = 0; j < monomer_count[i]; j++){
-            		int rand = 0;
-            		bool check = true;
-     
-            		while(check){
-            		rand = std::floor(getRand(1, Polymer_length));
-			check = false;
-
-            		for(int k = 0; k < monomer_count[i]; k++){
-            		    if(rand == monomer_id(i, k)){
-            		    check = true;
-            		    break;
-            		    }
-            		}
+		for(int j = 0; j < monomer_count[i]; j++){
+			int rand = 0;
+			bool check = true;
+        
+			while(check){
+			rand = std::floor(getRand(1, Polymer_length));
+		    	check = false;
+        
+			for(int k = 0; k < monomer_count[i]; k++){
+			    if(rand == monomer_id(i, k)){
+			    check = true;
+			    break;
+			    }
+			}
 
 			if(!check){
 			for(int g1 = 0; g1 < exclude_group_count; g1++){
@@ -158,7 +158,9 @@ void variable_replace(std::ifstream& input_file,
 			  << " replace type " << replace_type[i] << std::endl;
 		std::cout << " monomer_id " << monomer_id.row(i).leftCols(monomer_count[i]) << std::endl;
 		std::cout << " complementary_monomer_id " << complementary_monomer_id.row(i).leftCols(Polymer_length-monomer_count[i]) << std::endl;
+
 		//..........................................................
+		input_file >> read_string;//atom_wise
 		for(int j = 0; j < variable_replace_count[i]; j++){
             		int atom_id, fragment_type_index;
 			double bond, angle, dihedral, charge;
@@ -191,7 +193,21 @@ void variable_replace(std::ifstream& input_file,
             	    		Monomer_atom_charges_matrix(monomer_id(i, k)-1, atom_id-1) = charge;
             	    		Monomer_fragment_type_indices_matrix(monomer_id(i, k)-1, atom_id-1) = fragment_type_index;	
             		}		
-        	}		
-	}
+        	}
+
+		int atom_id_ini, atom_id_fin, fragment_type_index;
+		std::string fragment_name;
+		input_file >> read_string >> atom_id_ini >> atom_id_fin >> fragment_name >> fragment_type_index;//fragment_wise; fin_index > start_index;
+
+		for(int j = 0; j < variable_replace_count[i]; j++){
+			for(int k = 0; k < monomer_count[i]; k++){
+				for(int l = 0; l < (atom_id_fin-atom_id_ini+1); l++){
+					Monomer_fragment_names_matrix(monomer_id(i, k)-1, atom_id_ini+l-1) = fragment_name;	
+					Monomer_fragment_type_indices_matrix(monomer_id(i, k)-1, atom_id_ini+l-1) = fragment_type_index;
+				}
+			}
+		}
+
+		}
 //....
 }
