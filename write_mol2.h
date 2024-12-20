@@ -13,7 +13,8 @@ void write_mol2(std::ofstream& mol2_file, Vec_s& element_names, Mat_d& coordinat
 	mol2_file << "@<TRIPOS>ATOM" << std::endl;	
 
 	for(int i = 0 ; i < element_names.rows(); i++)
-		mol2_file << " " << std::setfill(' ') << std::setw(10) << (i+1) 
+		mol2_file << std::left 
+			  << std::setfill(' ') << std::setw(10) << (i+1) 
 			  << " " << std::setfill(' ') << std::setw(4) << element_names[i] 
 			  << " " << std::setfill(' ') << std::setw(10) << coordinates(0, i) 
 			  << " " << std::setfill(' ') << std::setw(10) << coordinates(1, i) 

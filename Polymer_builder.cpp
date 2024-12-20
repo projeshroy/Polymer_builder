@@ -54,7 +54,7 @@ int main(int argc, char** argv){
         input_file >> read_string;
         for(int i = 0; i < Cap1_atom_count; i++){
             input_file >> Cap1_atom_indices[i];	
-        std::cout << Cap1_atom_indices[i];
+        std::cout << Cap1_atom_indices[i] << " ";
      	}
 	std::cout << std::endl;
 
@@ -64,7 +64,7 @@ int main(int argc, char** argv){
         input_file >> read_string;
         for(int i = 0; i < Cap2_atom_count; i++){
             input_file >> Cap2_atom_indices[i];	
-	std::cout << Cap2_atom_indices[i];
+	std::cout << Cap2_atom_indices[i] << " ";
      	}
 	std::cout << std::endl;
 
