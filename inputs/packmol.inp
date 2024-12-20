@@ -13,8 +13,3 @@ structure ./Polymer_xyz.xyz
 number 10
 inside box 0 0 0 1000 1000 1000
 end structure
-
-structure ./waterTIP3P_xyz.xyz
-number 1000
-inside box 0 0 0 1000 1000 1000
-end structure

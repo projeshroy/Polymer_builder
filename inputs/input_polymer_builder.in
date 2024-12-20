@@ -1,47 +1,61 @@
-zmat_file_address ./Monomer_zmat.gzmat 
-mol2_file_address ./Monomer_mol2.mol2
-Monomer_atom_count 49
-Total_fragments 2
-Polymer_length  30
-Cap1_atom_count 1
-Cap1_atom_indices 19
-Cap2_atom_count 2
-Cap2_atom_indices 25 45
+zmat_file_address ./diamine.gzmat
+mol2_file_address ./diamine.mol2
+Monomer_atom_count 16
+Total_fragments 1
+Polymer_length  10
+Cap1_atom_count 3
+Cap1_atom_indices 11 12 13
+Cap2_atom_count 1
+Cap2_atom_indices 16
 
 variable_replace yes
-variable_group_count 7
+variable_group_count 5
 
-Cap_1 3 1 manual 1
-1  O 1.4252 108.80  69.30  opls_187_OS -0.7000 SUG1  1
-2  C 1.4252 111.40 148.60  opls_195_CT  0.3650 SUG1  1
-16 H 1.0959 106.98 241.51  opls_196_HC  0.1000 SUG1  1
+Group_name Cap_1 
+Atom_count 3 
+Monomer_count 1 
+Replace_type manual 1
+atom_wise
+11  N 1.4000 120.31 184.74  opls_900_NT -0.9000 BEN  1
+12  H 1.0152 113.45 199.50  opls_909_H   0.3600 BEN  1
+13  H 1.0153 113.37 328.72  opls_909_H   0.3600 BEN  1
+fragment_wise 
+11 13 BEN 1
 
-Cap_2 2 1 manual 30
-32 C 1.4277  51.63  44.05  opls_174_CT  0.2050 SUG2  2
-38 H 1.0987 111.62 137.25  opls_176_HC  0.0600 SUG2  2
+Group_name Cap_2
+Atom_count 1
+Monomer_count 1 
+Replace_type manual 10
+atom_wise
+16 H 1.0155 113.34  31.12 opls_909_H   0.3600 BEN  1
+fragment_wise
+16 16 BEN 1
 
-M_1 3 15 random
-7   X 3.5391 139.29 298.28 X 0.00 SUG1  1
-8   X 2.2795  47.41 179.75 X 0.00 SUG1  1
-12  H 1.0980 111.3  173.2  opls_185_HC 0.03 SUG1  1
+Group_name Quin
+Atom_count 2
+Monomer_count 2
+Replace_type manual 3 8
+atom_wise
+14 N 1.3998 120.30 175.48 opls_901_NT -0.7800 QUN  1
+15 X 1.0155 113.48 160.34 opls_909_H   0.3600 QUN  1
+fragment_wise
+1 16 QUN 1
 
-G_1 3 15 complto M_1
-21  H 1.0971 108.49  63.36 opls_185_HC 0.03 SUG1  1
-22  X 1.0700 109.47 296.09 X 0.00 SUG1  1
-23  X 1.0320 125.26 116.08 X 0.00 SUG1  1
+Group_name BenzQuin_plus1
+Atom_count 2
+Monomer_count 2
+Replace_type shift Quin 1
+atom_wise 
+14 N 1.3998 120.30 175.48 opls_901_NT -0.7800 QUN  1
+15 X 1.0155 113.48 160.34 opls_909_H   0.3600 BQN  1
+fragment_wise
+1 16 BQN 1
 
-M_2 3 15 random 
-30  X 3.3304  58.35 118.51 X 0.00 SUG2  2
-31  X 2.2794  72.65  50.97 X 0.00 SUG2  2
-37  H 1.495   111.3  173.2 opls_185_HC 0.03 SUG2  2
+Group_name BenzQuin_minus1
+Atom_count 0
+Monomer_count 2
+Replace_type shift Quin -1
+atom_wise 
+fragment_wise
+1 16 BQN 1
 
-G_2 3 15 complto M_2
-46  H 1.0958 108.69 326.60 opls_185_HC 0.03 SUG2  2
-47  X 1.0700 109.47 173.86 X 0.00 SUG2  2
-48  X 1.0320 125.26 353.86 X 0.00 SUG2  2
-
-CO2_H 4 30 all
-20  X 0.9811 133.02 177.40 X 0.00 SUG1  1
-24  X 0.9369 120.00   0.01 X 0.00 SUG1  1
-44  X 0.9808 126.45 121.72 X 0.00 SUG2  2
-49  X 0.9370 120.00 359.99 X 0.00 SUG2  2
