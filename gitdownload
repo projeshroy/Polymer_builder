@@ -1,4 +1,2 @@
-NOW=$(printf "%(%F_%H%M%S)T")
-sudo git add -A
-sudo git commit -am "$NOW"
+sudo git stash
 sudo git pull
