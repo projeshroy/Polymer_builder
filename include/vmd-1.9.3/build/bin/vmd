@@ -1,5 +1,5 @@
 #!/bin/sh
-defaultvmddir="/home/projesh/Polymer_builder/vmd-1.9.3/build/lib/vmd"
+defaultvmddir="/home/projesh/Polymer_builder/include/vmd-1.9.3/build/lib/"
 vmdbasename=vmd
 #!/bin/sh 
 ## In case the installation didn't add these (which means you didn't

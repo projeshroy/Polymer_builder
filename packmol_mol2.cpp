@@ -123,8 +123,10 @@ int main(int argc, char** argv){
 //................................................................................................
 //Run packmol and read coordinates from xyz file
 //................................................................................................
-
-	system("packmol < packmol.inp");	
+	
+	std::string PACKMOLCODE="/include/packmol-20.14.0/./packmol < packmol.inp";
+	std::string PACKMOL=INSTDIR.append(PACKMOLCODE);
+	system(PACKMOL.c_str());	
 		
 	Vec_s new_Total_Element_names;
 	Mat_d Total_coordinates;

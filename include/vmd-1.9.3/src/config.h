@@ -1,11 +1,11 @@
 #ifndef CONFIG_OPTIONS_H
 #define CONFIG_OPTIONS_H
 #define VMDVERSION "1.9.3"
-#define VERSION_MSG "VMD for LINUXAMD64, version 1.9.3 (February 22, 2023)"
+#define VERSION_MSG "VMD for LINUXAMD64, version 1.9.3 (December 30, 2024)"
 /* You should not change this value */
 #define CMDLEN 15
 #define DEF_VMDIMAGEVIEWER "display %s"
-#define DEF_VMDENVVAR "/home/projesh/Polymer_builder/vmd-1.9.3/build/lib/vmd"
+#define DEF_VMDENVVAR "/home/projesh/Polymer_builder/include/vmd-1.9.3/build/lib/"
 #define INIT_DEFDISPLAY DISPLAY_WIN
 #define INIT_DEFTITLE TITLE_ON
 #define INIT_DEFHEIGHT 6.0

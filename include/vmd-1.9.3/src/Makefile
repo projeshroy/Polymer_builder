@@ -1,6 +1,6 @@
 
 # Makefile for vmd
-# VMD for LINUXAMD64, version 1.9.3 (February 22, 2023)
+# VMD for LINUXAMD64, version 1.9.3 (December 30, 2024)
 
 #.SILENT:
 
@@ -436,59 +436,59 @@ vmd_LINUXAMD64: y.tab.h $(VMD_OBJS) $(VMD_PTX)
 	$(COMPILERC) $(RCFLAGS)
 
 install:
-	if [ ! -d "/home/projesh/Polymer_builder/vmd-1.9.3/build/lib/vmd" ]; then \
-		$(MAKEDIR) "/home/projesh/Polymer_builder/vmd-1.9.3/build/lib/vmd" ; \
+	if [ ! -d "/home/projesh/Polymer_builder/include/vmd-1.9.3/build/lib/" ]; then \
+		$(MAKEDIR) "/home/projesh/Polymer_builder/include/vmd-1.9.3/build/lib/" ; \
 	fi ; \
-	if [ ! -d "/home/projesh/Polymer_builder/vmd-1.9.3/build/bin" ]; then \
-		$(MAKEDIR) "/home/projesh/Polymer_builder/vmd-1.9.3/build/bin" ; \
+	if [ ! -d "/home/projesh/Polymer_builder/include/vmd-1.9.3/build/bin/" ]; then \
+		$(MAKEDIR) "/home/projesh/Polymer_builder/include/vmd-1.9.3/build/bin/" ; \
 	fi ; \
-	if [ ! -d "/home/projesh/Polymer_builder/vmd-1.9.3/build/lib/vmd"/doc ]; then \
-		$(MAKEDIR) "/home/projesh/Polymer_builder/vmd-1.9.3/build/lib/vmd"/doc; \
+	if [ ! -d "/home/projesh/Polymer_builder/include/vmd-1.9.3/build/lib/"/doc ]; then \
+		$(MAKEDIR) "/home/projesh/Polymer_builder/include/vmd-1.9.3/build/lib/"/doc; \
 	fi
-	-$(COPY) ../Announcement  "/home/projesh/Polymer_builder/vmd-1.9.3/build/lib/vmd"
-	-$(COPY) ../README        "/home/projesh/Polymer_builder/vmd-1.9.3/build/lib/vmd"
-	-$(COPY) ../LICENSE       "/home/projesh/Polymer_builder/vmd-1.9.3/build/lib/vmd"
-	-$(COPY) ../doc/ug.pdf        "/home/projesh/Polymer_builder/vmd-1.9.3/build/lib/vmd"/doc
-	if [ -f /home/projesh/Polymer_builder/vmd-1.9.3/build/lib/vmd/vmd_LINUXAMD64 ]; then \
-           $(MOVE) "/home/projesh/Polymer_builder/vmd-1.9.3/build/lib/vmd/vmd_LINUXAMD64" "/home/projesh/Polymer_builder/vmd-1.9.3/build/lib/vmd/OLD_vmd_LINUXAMD64" ; $(DELETE) "/home/projesh/Polymer_builder/vmd-1.9.3/build/lib/vmd/OLD_vmd_LINUXAMD64" ; fi
-	-$(COPY) ../LINUXAMD64/vmd_LINUXAMD64 "/home/projesh/Polymer_builder/vmd-1.9.3/build/lib/vmd"
+	-$(COPY) ../Announcement  "/home/projesh/Polymer_builder/include/vmd-1.9.3/build/lib/"
+	-$(COPY) ../README        "/home/projesh/Polymer_builder/include/vmd-1.9.3/build/lib/"
+	-$(COPY) ../LICENSE       "/home/projesh/Polymer_builder/include/vmd-1.9.3/build/lib/"
+	-$(COPY) ../doc/ug.pdf        "/home/projesh/Polymer_builder/include/vmd-1.9.3/build/lib/"/doc
+	if [ -f /home/projesh/Polymer_builder/include/vmd-1.9.3/build/lib//vmd_LINUXAMD64 ]; then \
+           $(MOVE) "/home/projesh/Polymer_builder/include/vmd-1.9.3/build/lib//vmd_LINUXAMD64" "/home/projesh/Polymer_builder/include/vmd-1.9.3/build/lib//OLD_vmd_LINUXAMD64" ; $(DELETE) "/home/projesh/Polymer_builder/include/vmd-1.9.3/build/lib//OLD_vmd_LINUXAMD64" ; fi
+	-$(COPY) ../LINUXAMD64/vmd_LINUXAMD64 "/home/projesh/Polymer_builder/include/vmd-1.9.3/build/lib/"
 	if [ -d "../lib/redistrib/lib_LINUXAMD64" ]; then \
 		$(CD) ../lib/redistrib/lib_LINUXAMD64; $(TAR) -cf - ./* | \
-		(cd "/home/projesh/Polymer_builder/vmd-1.9.3/build/lib/vmd" ; $(TAR) -xf -) \
+		(cd "/home/projesh/Polymer_builder/include/vmd-1.9.3/build/lib/" ; $(TAR) -xf -) \
 	fi ;
-	-$(COPY) ../lib/stride/stride_LINUXAMD64 ../lib/surf/surf_LINUXAMD64 ../lib/tachyon/tachyon_LINUXAMD64 "/home/projesh/Polymer_builder/vmd-1.9.3/build/lib/vmd"
+	-$(COPY) ../lib/stride/stride_LINUXAMD64 ../lib/surf/surf_LINUXAMD64 ../lib/tachyon/tachyon_LINUXAMD64 "/home/projesh/Polymer_builder/include/vmd-1.9.3/build/lib/"
 	-$(CD) ..; $(TAR) -cf - scripts | \
-	(cd "/home/projesh/Polymer_builder/vmd-1.9.3/build/lib/vmd" ; $(TAR) -xf -)
+	(cd "/home/projesh/Polymer_builder/include/vmd-1.9.3/build/lib/" ; $(TAR) -xf -)
 	-$(CD) ../lib; $(TAR) -cf - scripts | \
-	(cd "/home/projesh/Polymer_builder/vmd-1.9.3/build/lib/vmd" ; $(TAR) -xf -)
+	(cd "/home/projesh/Polymer_builder/include/vmd-1.9.3/build/lib/" ; $(TAR) -xf -)
 	-$(CD) ..; $(TAR) -cf - python | \
-	(cd "/home/projesh/Polymer_builder/vmd-1.9.3/build/lib/vmd"/scripts ; $(TAR) -xf -)
+	(cd "/home/projesh/Polymer_builder/include/vmd-1.9.3/build/lib/"/scripts ; $(TAR) -xf -)
 	-$(CD) ..; $(TAR) -cf - plugins | \
-	(cd "/home/projesh/Polymer_builder/vmd-1.9.3/build/lib/vmd" ; $(TAR) -xf -)
+	(cd "/home/projesh/Polymer_builder/include/vmd-1.9.3/build/lib/" ; $(TAR) -xf -)
 	-$(CD) ..; $(TAR) -cf - shaders | \
-	(cd "/home/projesh/Polymer_builder/vmd-1.9.3/build/lib/vmd" ; $(TAR) -xf -)
+	(cd "/home/projesh/Polymer_builder/include/vmd-1.9.3/build/lib/" ; $(TAR) -xf -)
 	if [ -f ../LINUXAMD64/OptiXShaders.ptx ]; then \
-		$(COPY) ../LINUXAMD64/OptiXShaders.ptx "/home/projesh/Polymer_builder/vmd-1.9.3/build/lib/vmd/shaders"; \
+		$(COPY) ../LINUXAMD64/OptiXShaders.ptx "/home/projesh/Polymer_builder/include/vmd-1.9.3/build/lib//shaders"; \
 	fi; 
-	-$(COPY) ../data/.vmdrc ../data/.vmdsensors ../data/vmd_completion.dat "/home/projesh/Polymer_builder/vmd-1.9.3/build/lib/vmd"
+	-$(COPY) ../data/.vmdrc ../data/.vmdsensors ../data/vmd_completion.dat "/home/projesh/Polymer_builder/include/vmd-1.9.3/build/lib/"
 	$(CD) ../bin ; \
 	if [ -f run_vmd_tmp ]; then $(DELETE) run_vmd_tmp; fi ; \
 	if [ ! -x "/bin/csh" ]; then \
 		$(ECHO) "Info: /bin/csh shell not found, installing Bourne shell startup script instead" ; \
 		$(ECHO) '#!/bin/sh' >> run_vmd_tmp ; \
-		$(ECHO) 'defaultvmddir="/home/projesh/Polymer_builder/vmd-1.9.3/build/lib/vmd"' >> run_vmd_tmp ; \
+		$(ECHO) 'defaultvmddir="/home/projesh/Polymer_builder/include/vmd-1.9.3/build/lib/"' >> run_vmd_tmp ; \
 		$(ECHO) 'vmdbasename=vmd' >> run_vmd_tmp ; \
 		cat vmd.sh >> run_vmd_tmp ; \
 	else \
 		$(ECHO) '#!/bin/csh' >> run_vmd_tmp ; \
-		$(ECHO) 'set defaultvmddir="/home/projesh/Polymer_builder/vmd-1.9.3/build/lib/vmd"' >> run_vmd_tmp ; \
+		$(ECHO) 'set defaultvmddir="/home/projesh/Polymer_builder/include/vmd-1.9.3/build/lib/"' >> run_vmd_tmp ; \
 		$(ECHO) 'set vmdbasename=vmd' >> run_vmd_tmp ; \
 		cat vmd.csh >> run_vmd_tmp ; \
 	fi ; \
 	chmod +x run_vmd_tmp ; \
-	$(COPY) run_vmd_tmp "/home/projesh/Polymer_builder/vmd-1.9.3/build/bin"/vmd ; \
+	$(COPY) run_vmd_tmp "/home/projesh/Polymer_builder/include/vmd-1.9.3/build/bin/"/vmd ; \
 	$(DELETE) run_vmd_tmp
-	$(ECHO) Make sure "/home/projesh/Polymer_builder/vmd-1.9.3/build/bin"/vmd is in your path.
+	$(ECHO) Make sure "/home/projesh/Polymer_builder/include/vmd-1.9.3/build/bin/"/vmd is in your path.
 	$(ECHO) "VMD installation complete.  Enjoy!"
 
 ##### remove most of the cruft

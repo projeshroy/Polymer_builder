@@ -30,6 +30,7 @@
 #include <Eigen/Dense>
 #include <Eigen/Eigenvalues> 
 #include "EigenDummyTensor.h"
+#include "Installation_directory.h"
 
 typedef Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> Mat_d;
 typedef Eigen::Matrix<bool, Eigen::Dynamic, Eigen::Dynamic> Mat_b;
