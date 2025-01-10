@@ -15,21 +15,6 @@ LIB="-L./include/vmd-1.9.3/build/lib -lm -g3 -w"
 GCC="g++ -std=c++17"
 
 ####################################################################
-#Install VMD 
-####################################################################
-
-export VMDINSTALLNAME="vmd"
-export VMDINSTALLBINDIR="$INSTDIR/include/vmd-1.9.3/build/bin/"
-export VMDINSTALLLIBRARYDIR="$INSTDIR/include/vmd-1.9.3/build/lib/$install_name"
-echo "VMD installaed at $VMDINSTALLBINDIR"
-
-cd include/vmd-1.9.3/
-./configure >> conf.log
-cd src/
-sudo make install >> vmd.log
-cd ../../../
-
-####################################################################
 #Install Polymer builder scripts
 ####################################################################
 

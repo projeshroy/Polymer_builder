@@ -1,0 +1,61 @@
+#!/bin/bash
+
+####################################################################
+#Set env variables
+####################################################################
+
+INSTDIR=$(pwd);
+echo "Installation directory = $INSTDIR";
+echo "std::string INSTDIR=\"$INSTDIR\";" > Installation_directory.h
+INCL="-I ./include/Eigen_3.3.1/ \
+      -I ./include/openbabel_3.1.1/build/bin/ \
+      -I ./include/vmd-1.9.3/build/bin/ \
+      -I ./include/packmol-20.14.0/"
+LIB="-L./include/vmd-1.9.3/build/lib -lm -g3 -w"
+GCC="g++ -std=c++17"
+
+####################################################################
+#Install VMD 
+####################################################################
+
+export VMDINSTALLNAME="vmd"
+export VMDINSTALLBINDIR="$INSTDIR/include/vmd-1.9.3/build/bin/"
+export VMDINSTALLLIBRARYDIR="$INSTDIR/include/vmd-1.9.3/build/lib/$install_name"
+
+cd include/vmd-1.9.3/
+rm conf.log
+./configure >& conf.log
+cd src/
+rm vmd.log
+sudo make install >& vmd.log
+cd ../../../
+
+echo "VMD installed at $VMDINSTALLBINDIR"
+####################################################################
+# Install Obabel 
+# Need cmake !
+####################################################################
+
+export BABEL_LIBDIR="$INSTDIR/include/openbabel/build/lib/"
+export BABEL_DATADIR="$INSTDIR/include/openbabel/build/data/"
+
+cd include/openbabel/
+sudo rm -rf build/
+mkdir build/
+cd build/
+sudo cmake .. \
+-DCMAKE_INSTALL_PREFIX="$INSTDIR/include/openbabel/build/" \
+-DEIGEN3_INCLUDE_DIR="$INSTDIR/include/Eigen_3.3.1/" \
+-DCMAKE_CXX_FLAGS=-w \
+-DLIB_INSTALL_DIR="$INSTDIR/include/openbabel/build/lib/" >& cmake.log
+sudo make -j8 >& make.log
+cd ../../../
+
+echo "Openbabel installed at $INSTDIR/include/openbabel/build/"
+####################################################################
+#Install Polymer builder scripts
+####################################################################
+
+$GCC $INCL $LIB Polymer_builder.cpp -o Polymer_builder
+$GCC $INCL $LIB packmol_mol2.cpp -o packmol_mol2
+$GCC $INCL $LIB generate_lammps_files.cpp -o generate_lammps_files

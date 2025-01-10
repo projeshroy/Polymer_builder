@@ -1,7 +1,7 @@
 #ifndef CONFIG_OPTIONS_H
 #define CONFIG_OPTIONS_H
 #define VMDVERSION "1.9.3"
-#define VERSION_MSG "VMD for LINUXAMD64, version 1.9.3 (December 30, 2024)"
+#define VERSION_MSG "VMD for LINUXAMD64, version 1.9.3 (January 10, 2025)"
 /* You should not change this value */
 #define CMDLEN 15
 #define DEF_VMDIMAGEVIEWER "display %s"

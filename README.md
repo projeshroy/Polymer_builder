@@ -43,3 +43,11 @@ Description	: The packmol_mol2 code can pack a certain number of polymers and ot
 Exec		: ./generate_lammps_files
 Input		: vmdscriptfile.tcl
 Description     : This bash script generates the lammps data and psf files from a mol2 file. 
+
+#=============================================================================
+#Installation
+#=============================================================================
+
+To install the code with all depedencies, use ./INSTALL
+If any changes are made in the source codes, use ./compile to re-compile without rebuilding depedencies. 
+

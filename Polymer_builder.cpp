@@ -377,8 +377,10 @@ int main(int argc, char** argv){
 //................................................................................................
 	
 	Mat_d Polymer_coordinates;	
-	system("obabel Polymer_zmat.gzmat -O Polymer_xyz.xyz");  	
-
+	std::string OBABELCODE="/include/openbabel/build/bin/./obabel Polymer_zmat.gzmat -O Polymer_xyz.xyz";
+	std::string OBABEL=INSTDIR.append(OBABELCODE);
+	system(OBABEL.c_str());	
+	
         std::string Polymer_xyz_file_address = getFileAddress(directory, std::string("Polymer_xyz.xyz"));
         std::ifstream Polymer_xyz_file(Polymer_xyz_file_address.c_str());    
 	Vec_s new_Polymer_Element_names;
