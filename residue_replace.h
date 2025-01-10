@@ -16,22 +16,22 @@ void residue_replace(std::ifstream& input_file,
             	Mat_i& Monomer_fragment_type_indices_matrix){	
 
 	std::string read_string;
-        int variable_replace_group_count;
-        input_file >> read_string >> variable_replace_group_count;
+        int post_processing_group_count;
+        input_file >> read_string >> post_processing_group_count;
 
-	Vec_i variable_replace_count, monomer_count;
-	variable_replace_count.resize(variable_replace_group_count);
-	monomer_count.resize(variable_replace_group_count);
+	Vec_i post_processing_count, monomer_count;
+	post_processing_count.resize(post_processing_group_count);
+	monomer_count.resize(post_processing_group_count);
 	Vec_s group_name, replace_type;	
-	group_name.resize(variable_replace_group_count);
-	replace_type.resize(variable_replace_group_count);
+	group_name.resize(post_processing_group_count);
+	replace_type.resize(post_processing_group_count);
        	Mat_i monomer_id, complementary_monomer_id; 
-	monomer_id.resize(variable_replace_group_count, Polymer_length);
-	complementary_monomer_id.resize(variable_replace_group_count, Polymer_length);
+	monomer_id.resize(post_processing_group_count, Polymer_length);
+	complementary_monomer_id.resize(post_processing_group_count, Polymer_length);
        	monomer_id.setZero(); complementary_monomer_id.setZero();
    
-	for(int i = 0; i < variable_replace_group_count; i++){	
-		input_file >> group_name[i] >> variable_replace_count[i] >> monomer_count[i] >> replace_type[i]; 
+	for(int i = 0; i < post_processing_group_count; i++){	
+		input_file >> group_name[i] >> post_processing_count[i] >> monomer_count[i] >> replace_type[i]; 
 
 		//Selecting Monomer id for the replacement group.........
 		// replace_type = manual, all, from, sameas, complto, random.
@@ -159,7 +159,7 @@ void residue_replace(std::ifstream& input_file,
 		std::cout << " monomer_id " << monomer_id.row(i).leftCols(monomer_count[i]) << std::endl;
 		std::cout << " complementary_monomer_id " << complementary_monomer_id.row(i).leftCols(Polymer_length-monomer_count[i]) << std::endl;
 		//..........................................................
-		for(int j = 0; j < variable_replace_count[i]; j++){
+		for(int j = 0; j < post_processing_count[i]; j++){
             		int atom_id, fragment_type_index;
 			double bond, angle, dihedral, charge;
             		std::string name, atom_type_name, fragment_name;

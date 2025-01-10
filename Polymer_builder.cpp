@@ -5,7 +5,7 @@
 #include "read_zmat.h"
 #include "write_zmat.h"
 #include "read_xyz.h"
-#include "variable_replace.h"
+#include "post_processing.h"
 
 int main(int argc, char** argv){
 
@@ -230,7 +230,7 @@ int main(int argc, char** argv){
         input_file >> read_string >> read_string;
 
         if(read_string == std::string("yes")){
-	variable_replace(input_file,
+	post_processing(input_file,
 		Polymer_length,
 		Element_names_matrix, 
 		Mid_Element_names_matrix, 

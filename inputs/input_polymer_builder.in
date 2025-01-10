@@ -8,8 +8,8 @@ Cap1_atom_indices 11 12 13
 Cap2_atom_count 1
 Cap2_atom_indices 16
 
-variable_replace yes
-variable_group_count 5
+post_processing yes
+post_processing_group_count 5
 
 Group_name Cap_1 
 Atom_count 3 

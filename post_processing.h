@@ -1,6 +1,6 @@
 #include "replace_type.h"
 
-void variable_replace(std::ifstream& input_file,
+void post_processing(std::ifstream& input_file,
 		int& Polymer_length,
 		Mat_s& Element_names_matrix, 
 		Mat_s& Mid_Element_names_matrix, 
@@ -18,23 +18,23 @@ void variable_replace(std::ifstream& input_file,
             	Mat_i& Monomer_fragment_type_indices_matrix){	
 
 	std::string read_string;
-        int variable_replace_group_count;
-        input_file >> read_string >> variable_replace_group_count;
+        int post_processing_group_count;
+        input_file >> read_string >> post_processing_group_count;
 
-	Vec_i variable_replace_count, monomer_count;
-	variable_replace_count.resize(variable_replace_group_count);
-	monomer_count.resize(variable_replace_group_count);
+	Vec_i post_processing_count, monomer_count;
+	post_processing_count.resize(post_processing_group_count);
+	monomer_count.resize(post_processing_group_count);
 	Vec_s group_name, replace_type;	
-	group_name.resize(variable_replace_group_count);
-	replace_type.resize(variable_replace_group_count);
+	group_name.resize(post_processing_group_count);
+	replace_type.resize(post_processing_group_count);
        	Mat_i monomer_id, complementary_monomer_id; 
-	monomer_id.resize(variable_replace_group_count, Polymer_length);
-	complementary_monomer_id.resize(variable_replace_group_count, Polymer_length);
+	monomer_id.resize(post_processing_group_count, Polymer_length);
+	complementary_monomer_id.resize(post_processing_group_count, Polymer_length);
        	monomer_id.setZero(); complementary_monomer_id.setZero();
    
-	for(int i = 0; i < variable_replace_group_count; i++){	
+	for(int i = 0; i < post_processing_group_count; i++){	
 		input_file >> read_string >> group_name[i] 
-			   >> read_string >> variable_replace_count[i] 
+			   >> read_string >> post_processing_count[i] 
 			   >> read_string >> monomer_count[i] 
 			   >> read_string >> replace_type[i]; 
 
@@ -58,7 +58,7 @@ void variable_replace(std::ifstream& input_file,
 		}}
 		
 		std::cout << " Variable replace group name " << group_name[i] 
-			  << " Atom count " << variable_replace_count[i]
+			  << " Atom count " << post_processing_count[i]
 			  << " monomer_count " << monomer_count[i] 
 			  << " replace type " << replace_type[i] << std::endl;
 		std::cout << " monomer_id " << monomer_id.row(i).leftCols(monomer_count[i]) << std::endl;
@@ -66,8 +66,8 @@ void variable_replace(std::ifstream& input_file,
 
 		//..........................................................
 		input_file >> read_string;//atom_wise
-		if(variable_replace_count[i] > 0){
-		for(int j = 0; j < variable_replace_count[i]; j++){
+		if(post_processing_count[i] > 0){
+		for(int j = 0; j < post_processing_count[i]; j++){
             		int atom_id, fragment_type_index;
 			double bond, angle, dihedral, charge;
             		std::string name, atom_type_name, fragment_name;

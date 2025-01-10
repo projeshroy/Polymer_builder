@@ -226,14 +226,14 @@ int main(int argc, char** argv){
 //Read variable replace section in input.in file
 //................................................................................................
 
-        int variable_replace_count;
+        int post_processing_count;
 
         input_file >> read_string >> read_string;
 
         if(read_string == std::string("yes")){
-        input_file >> read_string >> variable_replace_count;
+        input_file >> read_string >> post_processing_count;
 
-        for(int i = 0; i < variable_replace_count; i++){
+        for(int i = 0; i < post_processing_count; i++){
             	int atom_id, fragment_type_index, monomer_count;
 		double bond, angle, dihedral, charge;
             	std::string name, atom_type_name, fragment_name;
