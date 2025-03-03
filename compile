@@ -11,8 +11,18 @@ INCL="-I ./include/Eigen_3.3.1/ \
       -I ./include/openbabel_3.1.1/build/bin/ \
       -I ./include/vmd-1.9.3/build/bin/ \
       -I ./include/packmol-20.14.0/"
-LIB="-L./include/vmd-1.9.3/build/lib -lm -g3 -w"
+LIB="-L./include/vmd-1.9.3/build/lib -L./include/openbabel/build/lib/ -lm -g3 -w"
 GCC="g++ -std=c++17"
+
+####################################################################
+#Depedency env variables
+####################################################################
+
+export VMDINSTALLNAME="vmd"
+export VMDINSTALLBINDIR="$INSTDIR/include/vmd-1.9.3/build/bin/"
+export VMDINSTALLLIBRARYDIR="$INSTDIR/include/vmd-1.9.3/build/lib/$install_name"
+export BABEL_LIBDIR="$INSTDIR/include/openbabel/build/lib/"
+export BABEL_DATADIR="$INSTDIR/include/openbabel/build/data/"
 
 ####################################################################
 #Install Polymer builder scripts

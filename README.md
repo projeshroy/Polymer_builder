@@ -4,7 +4,7 @@
 #=============================================================================
 
 Requirements 	: 	Eigen_3.3.1, VMD, and Packmol. All are included in the "include" directory. 
-Installations	: 	Edit the "compile" file is necessary and then type "./compile"
+Installations	: 	Edit the "INSTALL/compile" file is necessary and then type "source INSTALL/compile"
 
 #=============================================================================
 #Description
