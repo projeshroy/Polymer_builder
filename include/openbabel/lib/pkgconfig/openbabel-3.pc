@@ -1,0 +1,11 @@
+prefix=/home/projesh/Polymer_builder/include/openbabel-3.1.1/build
+exec_prefix=${prefix}
+libdir=${exec_prefix}//home/projesh/Polymer_builder/include/openbabel-3.1.1/lib
+includedir=${prefix}/include
+pkgincludedir=${includedir}/openbabel3
+
+Name: Open Babel library
+Description: libopenbabel
+Version: 3.1.0
+Libs: -L${libdir} -lopenbabel
+Cflags: -I${pkgincludedir}
