@@ -24,6 +24,8 @@ GNU General Public License for more details.
 
 #include <string>
 #include <iosfwd>
+#include <ctime>
+#include <cmath>
 
 #if TIME_WITH_SYS_TIME
 #include <sys/time.h>
