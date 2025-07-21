@@ -1,6 +1,6 @@
 
 # Makefile for vmd
-# VMD for LINUXAMD64, version 1.9.3 (March 8, 2025)
+# VMD for LINUXAMD64, version 1.9.3 (May 16, 2025)
 
 #.SILENT:
 

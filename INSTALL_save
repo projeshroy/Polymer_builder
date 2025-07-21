@@ -30,8 +30,6 @@ cd ../../
 export VMDINSTALLNAME="vmd"
 export VMDINSTALLBINDIR="$INSTDIR/include/vmd-1.9.3/build/bin/"
 export VMDINSTALLLIBRARYDIR="$INSTDIR/include/vmd-1.9.3/build/lib/$install_name"
-echo "VMDINSTALLBINDIR=$INSTDIR/include/vmd-1.9.3/build/bin/" | sudo tee -a /etc/environment
-echo "VMDINSTALLLIBRARYDIR=$INSTDIR/include/vmd-1.9.3/build/lib/$install_name" | sudo tee -a /etc/environment
 
 cd include/vmd-1.9.3/
 rm conf.log
@@ -49,8 +47,6 @@ echo "VMD installed at $VMDINSTALLBINDIR"
 
 export BABEL_LIBDIR="$INSTDIR/include/openbabel/build/lib/"
 export BABEL_DATADIR="$INSTDIR/include/openbabel/build/data/"
-echo "BABEL_LIBDIR=$INSTDIR/include/openbabel/build/lib/" | sudo tee -a /etc/environment
-echo "BABEL_DATADIR=$INSTDIR/include/openbabel/build/data/" | sudo tee -a /etc/environment
 
 cd include/openbabel/
 sudo rm -rf build/
@@ -68,8 +64,6 @@ echo "Openbabel installed at $INSTDIR/include/openbabel/build/"
 ####################################################################
 #Install Polymer builder scripts
 ####################################################################
-sudo bash -c "source /etc/environment"
-export $(grep -v '^#' /etc/environment | xargs -d '\n')
 
 $GCC $INCL $LIB Polymer_builder.cpp -o Polymer_builder
 $GCC $INCL $LIB packmol_mol2.cpp -o packmol_mol2
