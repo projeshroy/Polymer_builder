@@ -20,7 +20,7 @@ int main(int argc, char** argv){
         std::ifstream Packed_mol2_file(Packed_mol2_file_address.c_str());	
 	
 	Vec_s Element_names, Packed_atom_type_names, Packed_fragment_names, Packed_mol2_bond_types;
-        vec_d packed_atom_charges;
+        Vec_d Packed_atom_charges;
         Vec_i Packed_fragment_type_indices;
         Mat_i Packed_mol2_bonds;
         Mat_d Packed_coordinates;
